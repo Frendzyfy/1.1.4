@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) {
         UserService us = new UserServiceImpl();
         us.createUsersTable();
         us.saveUser("Dmitry", "Makarov", (byte) 23);
