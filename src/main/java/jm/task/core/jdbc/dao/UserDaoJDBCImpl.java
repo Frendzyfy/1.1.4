@@ -39,7 +39,6 @@ public class UserDaoJDBCImpl implements UserDao {
             ps.setString(2, lastName);
             ps.setInt(3, age);
             ps.executeUpdate();
-            System.out.println("User с именем – " + name + " добавлен в базу данных" );
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -51,6 +50,7 @@ public class UserDaoJDBCImpl implements UserDao {
             ps.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Ошибка удаления User");
+            throw new RuntimeException();
         }
     }
 
@@ -74,7 +74,7 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public void cleanUsersTable() {
-        String sql = "DELETE FROM users";
+        String sql = "TRUNCATE TABLE USERS";
         try (PreparedStatement ps = connection.prepareStatement(sql);) {
             ps.executeUpdate();
         } catch (SQLException e) {
